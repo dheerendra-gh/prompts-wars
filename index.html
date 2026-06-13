@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Carbon Footprint Awareness Program</title>
+  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="Simple carbon footprint calculator and awareness app" />
+</head>
+<body>
+  <main class="container">
+    <h1>Carbon Footprint Awareness Program</h1>
+    <p class="lead">Estimate your annual CO₂ emissions and get simple tips to reduce them.</p>
+
+    <section class="card">
+      <h2>Quick Calculator</h2>
+      <form id="calcForm">
+        <label>Car — average km driven per week
+          <input type="number" id="carKmWeek" min="0" value="150">
+        </label>
+
+        <label>Electricity — kWh per month
+          <input type="number" id="elecKwhMonth" min="0" value="250">
+        </label>
+
+        <label>Flights — short/medium-haul round trips per year
+          <input type="number" id="flightsPerYear" min="0" value="1">
+        </label>
+
+        <label>Meat-heavy meals per week
+          <input type="number" id="meatMealsWeek" min="0" value="7">
+        </label>
+
+        <div class="actions">
+          <button type="button" id="calcBtn">Calculate</button>
+          <button type="button" id="resetBtn">Reset</button>
+        </div>
+      </form>
+
+      <div id="results" class="results" aria-live="polite"></div>
+    </section>
+
+    <section class="card">
+      <h2>Practical Tips</h2>
+      <ul>
+        <li>Drive less: combine trips, carpool, or use public transport.</li>
+        <li>Shift to lower-carbon electricity where possible or improve home efficiency.</li>
+        <li>Reduce red-meat consumption — try a few plant-based meals weekly.</li>
+        <li>Choose fewer short flights; consider trains for regional travel.</li>
+        <li>Offset or support verified climate projects for unavoidable emissions.</li>
+      </ul>
+    </section>
+
+    <footer class="footer">Built for awareness — data are estimates only.</footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
