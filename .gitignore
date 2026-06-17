@@ -1,0 +1,6 @@
+# Ignore local workflow debug files
+action_logs.zip
+joblogs.txt
+
+# Ignore local action logs extracted during debugging
+action_logs/
