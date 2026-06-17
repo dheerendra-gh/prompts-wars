@@ -41,5 +41,18 @@ git push -u origin main
 
 If you'd rather deploy manually, push the `gh-pages` branch with the site files.
 
+New inputs added
+
+- `Heating` (kWh per month): include gas or electric heating usage.
+- `Public transit` (km per week): distance travelled by bus/train per week.
+- `Household size`: number of people in your home — app shows a per-person estimate.
+
+Accessibility and usability improvements
+
+- Clear form labels and helper text for each input.
+- Focus styles and keyboard-accessible controls.
+- Visual feedback: a gauge shows per-person emissions relative to a 10 t CO₂/year baseline.
+
+
 
 Repo is for assessments for prompts wars events.

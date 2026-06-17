@@ -9,49 +9,241 @@
 </head>
 <body>
   <main class="container">
-    <h1>Carbon Footprint Awareness Program</h1>
-    <p class="lead">Estimate your annual CO₂ emissions and get simple tips to reduce them.</p>
+    <header class="hero" role="banner">
+      <div class="hero-left">
+        <h1 class="site-title">Carbon Footprint Awareness</h1>
+        <p class="lead">Estimate your annual CO₂ emissions and get personalised tips to reduce them.</p>
+      </div>
+      <div class="hero-right" aria-hidden="true">
+        <!-- Animated Earth + Leaf SVG -->
+        <svg class="hero-svg" viewBox="0 0 240 240" width="200" height="200" xmlns="http://www.w3.org/2000/svg" role="img">
+          <title>Animated Earth and Leaf — carbon awareness</title>
+          <defs>
+            <radialGradient id="earthGradient" cx="35%" cy="35%" r="65%">
+              <stop offset="0%" stop-color="#87ceeb"/>
+              <stop offset="70%" stop-color="#4a90e2"/>
+              <stop offset="100%" stop-color="#1a5f8f"/>
+            </radialGradient>
+          </defs>
+          <g class="spin">
+            <!-- Ocean base -->
+            <circle cx="120" cy="120" r="88" fill="url(#earthGradient)"/>
+            <!-- North America -->
+            <path d="M60 80 L70 70 L75 75 L80 70 L85 80 L80 90 L75 95 L70 90 Z" fill="#4a7c3d" opacity="0.9"/>
+            <!-- South America -->
+            <path d="M75 110 L85 105 L90 115 L85 125 L75 120 Z" fill="#3d6b2f" opacity="0.85"/>
+            <!-- Europe -->
+            <path d="M130 75 L145 70 L155 80 L150 95 L140 90 Z" fill="#5a8c47" opacity="0.9"/>
+            <!-- Africa -->
+            <path d="M145 100 L160 95 L165 110 L158 130 L145 125 Z" fill="#4a7c3d" opacity="0.85"/>
+            <!-- Asia -->
+            <path d="M165 75 L190 70 L200 85 L195 100 L180 95 L170 85 Z" fill="#5a8c47" opacity="0.9"/>
+            <!-- Australia -->
+            <path d="M180 130 L190 128 L195 140 L185 145 Z" fill="#3d6b2f" opacity="0.85"/>
+            <!-- Cloud wisps -->
+            <circle cx="100" cy="100" r="8" fill="#ffffff" opacity="0.25"/>
+            <circle cx="150" cy="110" r="6" fill="#ffffff" opacity="0.2"/>
+            <circle cx="120" cy="140" r="7" fill="#ffffff" opacity="0.22"/>
+            <!-- Outer glow ring -->
+            <circle cx="120" cy="120" r="90" fill="none" stroke="#a7e0b2" stroke-width="2" opacity="0.5"/>
+            <!-- Spinning ring -->
+            <g class="ring" transform="translate(120 120)">
+              <circle cx="0" cy="0" r="100" fill="none" stroke="#7cc67c" stroke-width="2" stroke-opacity="0.4" stroke-dasharray="15 10"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+    </header>
 
-    <section class="card">
-      <h2>Quick Calculator</h2>
-      <form id="calcForm">
-        <label>Car — average km driven per week
-          <input type="number" id="carKmWeek" min="0" value="150">
-        </label>
+    <section class="grid">
+      <aside class="card card-form">
+        <h2>Quick Calculator</h2>
+        <form id="calcForm">
+          <div class="input-row select-row row-car">
+            <div class="row-control">
+              <select id="carKmWeek">
+                <option value="20">Very low — &lt;30 km/week</option>
+                <option value="55">Low — 30–75 km/week</option>
+                <option value="150" selected>Moderate — 75–200 km/week</option>
+                <option value="300">High — 200–400 km/week</option>
+                <option value="500">Very high — &gt;400 km/week</option>
+              </select>
+            </div>
+            <div class="row-label">
+              <div class="label-inner">
+                <span class="row-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 13h14l1.5 4H3.5L5 13zm0-1.5L4 8h16l-1 3.5H5zM7 18.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm10 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>
+                </span>
+                <label for="carKmWeek">Car — km driven per week</label>
+              </div>
+              <small id="carHelp">Average petrol car: emissions per km are approximate.</small>
+            </div>
+          </div>
 
-        <label>Electricity — kWh per month
-          <input type="number" id="elecKwhMonth" min="0" value="250">
-        </label>
+          <div class="input-row select-row row-electricity">
+            <div class="row-control">
+              <select id="elecKwhMonth">
+                <option value="80">Very low — &lt;100 kWh/month</option>
+                <option value="150">Low — 100–200 kWh/month</option>
+                <option value="300" selected>Average — 200–400 kWh/month</option>
+                <option value="600">High — 400–800 kWh/month</option>
+                <option value="1000">Very high — &gt;800 kWh/month</option>
+              </select>
+            </div>
+            <div class="row-label">
+              <div class="label-inner">
+                <span class="row-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2L3 14h6v8l10-12h-6z"/></svg>
+                </span>
+                <label for="elecKwhMonth">Electricity — kWh per month</label>
+              </div>
+              <small id="elecHelp">Check your electricity bill for exact kWh.</small>
+            </div>
+          </div>
 
-        <label>Flights — short/medium-haul round trips per year
-          <input type="number" id="flightsPerYear" min="0" value="1">
-        </label>
+          <div class="input-row select-row row-flights">
+            <div class="row-control">
+              <select id="flightsPerYear">
+                <option value="0">None</option>
+                <option value="1" selected>1–2 short trips</option>
+                <option value="4">3–5</option>
+                <option value="8">6+</option>
+              </select>
+            </div>
+            <div class="row-label">
+              <div class="label-inner">
+                <span class="row-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 12l19-7-7 7 7 7-19-7z"/></svg>
+                </span>
+                <label for="flightsPerYear">Flights — round trips per year</label>
+              </div>
+              <small id="flightHelp">Short/medium-haul round trips.</small>
+            </div>
+          </div>
 
-        <label>Meat-heavy meals per week
-          <input type="number" id="meatMealsWeek" min="0" value="7">
-        </label>
+          <div class="input-row select-row row-food">
+            <div class="row-control">
+              <select id="meatMealsWeek">
+                <option value="0">None (vegetarian)</option>
+                <option value="2">1–3</option>
+                <option value="5">4–6</option>
+                <option value="8" selected>7+</option>
+              </select>
+            </div>
+            <div class="row-label">
+              <div class="label-inner">
+                <span class="row-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 6c0-1.1.9-2 2-2h12c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V6zm4 1.5c0 .83.67 1.5 1.5 1.5S11 8.33 11 7.5 10.33 6 9.5 6 8 6.67 8 7.5zm5 8.5c1.38 0 2.5-1.12 2.5-2.5S14.88 11 13.5 11 11 12.12 11 13.5 12.12 16 13.5 16z"/></svg>
+                </span>
+                <label for="meatMealsWeek">Meat-heavy meals per week</label>
+              </div>
+              <small id="foodHelp">Red-meat meals have higher footprints.</small>
+            </div>
+          </div>
 
-        <div class="actions">
-          <button type="button" id="calcBtn">Calculate</button>
-          <button type="button" id="resetBtn">Reset</button>
+          <div class="input-row select-row row-heating">
+            <div class="row-control">
+              <select id="heatingKwhMonth">
+                <option value="0">None</option>
+                <option value="100">Low — 50–150 kWh/month</option>
+                <option value="220" selected>Average — 150–300 kWh/month</option>
+                <option value="450">High — 300–600 kWh/month</option>
+                <option value="800">Very high — &gt;600 kWh/month</option>
+              </select>
+            </div>
+            <div class="row-label">
+              <div class="label-inner">
+                <span class="row-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8 7 9 10 9 12a3 3 0 1 0 6 0c0-2-1-5-3-10z"/></svg>
+                </span>
+                <label for="heatingKwhMonth">Heating — kWh per month</label>
+              </div>
+              <small id="heatHelp">Include gas or electric heating usage (kWh).</small>
+            </div>
+          </div>
+
+          <div class="input-row select-row row-transit">
+            <div class="row-control">
+              <select id="transitKmWeek">
+                <option value="0">None</option>
+                <option value="10">Low — &lt;20 km/week</option>
+                <option value="40" selected>Moderate — 20–60 km/week</option>
+                <option value="100">High — 60–150 km/week</option>
+                <option value="250">Very high — &gt;150 km/week</option>
+              </select>
+            </div>
+            <div class="row-label">
+              <div class="label-inner">
+                <span class="row-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2h-8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2zm2 3h4v3H6V9zm8 0h4v3h-4V9zM7.5 17a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm9 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>
+                </span>
+                <label for="transitKmWeek">Public transit — km per week</label>
+              </div>
+              <small id="transitHelp">Distance travelled per week on buses/trains (approx).</small>
+            </div>
+          </div>
+
+          <div class="input-row select-row row-household">
+            <div class="row-control">
+              <select id="householdSize">
+                <option value="1">1</option>
+                <option value="2" selected>2</option>
+                <option value="3">3</option>
+                <option value="4">4+</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button type="button" id="calcBtn" class="primary cta"><span class="btn-icon" aria-hidden="true">⚡</span> Calculate my footprint</button>
+            <button type="button" id="resetBtn" class="secondary">Reset</button>
+          </div>
+        </form>
+      </aside>
+
+      <section class="card card-results" aria-live="polite">
+        <h2>Results</h2>
+        <div id="gauge" class="gauge" aria-hidden="true">
+          <div class="gauge-bar"><div class="gauge-fill" style="width:0%"></div></div>
+          <div class="gauge-labels"><span class="low">Low</span><span class="high">High</span></div>
         </div>
-      </form>
-
-      <div id="results" class="results" aria-live="polite"></div>
+        <div id="results" class="results"></div>
+      </section>
     </section>
 
-    <section class="card">
+    <section class="card card-tips">
       <h2>Practical Tips</h2>
       <ul>
-        <li>Drive less: combine trips, carpool, or use public transport.</li>
-        <li>Shift to lower-carbon electricity where possible or improve home efficiency.</li>
-        <li>Reduce red-meat consumption — try a few plant-based meals weekly.</li>
-        <li>Choose fewer short flights; consider trains for regional travel.</li>
-        <li>Offset or support verified climate projects for unavoidable emissions.</li>
+        <li><strong>Travel:</strong> Combine trips, use public transport, or try carpooling.</li>
+        <li><strong>Home energy:</strong> Improve insulation and switch to low-carbon tariffs.</li>
+        <li><strong>Diet:</strong> Replace some meat meals with plant-based alternatives.</li>
+        <li><strong>Flights:</strong> Prefer trains for regional travel when practical.</li>
+        <li><strong>Offset:</strong> Consider verified carbon offset projects for unavoidable trips.</li>
       </ul>
     </section>
 
-    <footer class="footer">Built for awareness — data are estimates only.</footer>
+    <footer class="site-footer">
+      <div class="footer-row">
+        <div class="footer-brand">
+          <span class="footer-logo">🌿</span>
+          <div>
+            <p class="footer-title">Carbon Footprint Awareness</p>
+            <p class="footer-subtitle">Practical tools and guidance to reduce your footprint.</p>
+          </div>
+        </div>
+
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="#">Home</a>
+          <a href="#">Calculator</a>
+          <a href="#">Tips</a>
+          <a href="#">Contact</a>
+        </nav>
+
+        <div class="footer-meta">
+          <p>&copy; <span id="year"></span> Carbon Awareness</p>
+        </div>
+      </div>
+    </footer>
   </main>
 
   <script src="app.js"></script>
