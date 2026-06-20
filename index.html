@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Carbon Footprint Awareness Program</title>
   <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Merriweather:wght@700&display=swap" rel="stylesheet">
   <meta name="description" content="Simple carbon footprint calculator and awareness app" />
 </head>
 <body>
@@ -60,15 +61,6 @@
         <h2>Quick Calculator</h2>
         <form id="calcForm">
           <div class="input-row select-row row-car">
-            <div class="row-control">
-              <select id="carKmWeek">
-                <option value="20">Very low — &lt;30 km/week</option>
-                <option value="55">Low — 30–75 km/week</option>
-                <option value="150" selected>Moderate — 75–200 km/week</option>
-                <option value="300">High — 200–400 km/week</option>
-                <option value="500">Very high — &gt;400 km/week</option>
-              </select>
-            </div>
             <div class="row-label">
               <div class="label-inner">
                 <span class="row-icon" aria-hidden="true">
@@ -78,18 +70,18 @@
               </div>
               <small id="carHelp">Average petrol car: emissions per km are approximate.</small>
             </div>
+            <div class="row-control">
+              <select id="carKmWeek">
+                <option value="20">Very low — &lt;30 km/week</option>
+                <option value="55">Low — 30–75 km/week</option>
+                <option value="150" selected>Moderate — 75–200 km/week</option>
+                <option value="300">High — 200–400 km/week</option>
+                <option value="500">Very high — &gt;400 km/week</option>
+              </select>
+            </div>
           </div>
 
           <div class="input-row select-row row-electricity">
-            <div class="row-control">
-              <select id="elecKwhMonth">
-                <option value="80">Very low — &lt;100 kWh/month</option>
-                <option value="150">Low — 100–200 kWh/month</option>
-                <option value="300" selected>Average — 200–400 kWh/month</option>
-                <option value="600">High — 400–800 kWh/month</option>
-                <option value="1000">Very high — &gt;800 kWh/month</option>
-              </select>
-            </div>
             <div class="row-label">
               <div class="label-inner">
                 <span class="row-icon" aria-hidden="true">
@@ -99,17 +91,18 @@
               </div>
               <small id="elecHelp">Check your electricity bill for exact kWh.</small>
             </div>
+            <div class="row-control">
+              <select id="elecKwhMonth">
+                <option value="80">Very low — &lt;100 kWh/month</option>
+                <option value="150">Low — 100–200 kWh/month</option>
+                <option value="300" selected>Average — 200–400 kWh/month</option>
+                <option value="600">High — 400–800 kWh/month</option>
+                <option value="1000">Very high — &gt;800 kWh/month</option>
+              </select>
+            </div>
           </div>
 
           <div class="input-row select-row row-flights">
-            <div class="row-control">
-              <select id="flightsPerYear">
-                <option value="0">None</option>
-                <option value="1" selected>1–2 short trips</option>
-                <option value="4">3–5</option>
-                <option value="8">6+</option>
-              </select>
-            </div>
             <div class="row-label">
               <div class="label-inner">
                 <span class="row-icon" aria-hidden="true">
@@ -119,17 +112,17 @@
               </div>
               <small id="flightHelp">Short/medium-haul round trips.</small>
             </div>
+            <div class="row-control">
+              <select id="flightsPerYear">
+                <option value="0">None</option>
+                <option value="1" selected>1–2 short trips</option>
+                <option value="4">3–5</option>
+                <option value="8">6+</option>
+              </select>
+            </div>
           </div>
 
           <div class="input-row select-row row-food">
-            <div class="row-control">
-              <select id="meatMealsWeek">
-                <option value="0">None (vegetarian)</option>
-                <option value="2">1–3</option>
-                <option value="5">4–6</option>
-                <option value="8" selected>7+</option>
-              </select>
-            </div>
             <div class="row-label">
               <div class="label-inner">
                 <span class="row-icon" aria-hidden="true">
@@ -139,18 +132,17 @@
               </div>
               <small id="foodHelp">Red-meat meals have higher footprints.</small>
             </div>
+            <div class="row-control">
+              <select id="meatMealsWeek">
+                <option value="0">None (vegetarian)</option>
+                <option value="2">1–3</option>
+                <option value="5">4–6</option>
+                <option value="8" selected>7+</option>
+              </select>
+            </div>
           </div>
 
           <div class="input-row select-row row-heating">
-            <div class="row-control">
-              <select id="heatingKwhMonth">
-                <option value="0">None</option>
-                <option value="100">Low — 50–150 kWh/month</option>
-                <option value="220" selected>Average — 150–300 kWh/month</option>
-                <option value="450">High — 300–600 kWh/month</option>
-                <option value="800">Very high — &gt;600 kWh/month</option>
-              </select>
-            </div>
             <div class="row-label">
               <div class="label-inner">
                 <span class="row-icon" aria-hidden="true">
@@ -160,18 +152,18 @@
               </div>
               <small id="heatHelp">Include gas or electric heating usage (kWh).</small>
             </div>
+            <div class="row-control">
+              <select id="heatingKwhMonth">
+                <option value="0">None</option>
+                <option value="100">Low — 50–150 kWh/month</option>
+                <option value="220" selected>Average — 150–300 kWh/month</option>
+                <option value="450">High — 300–600 kWh/month</option>
+                <option value="800">Very high — &gt;600 kWh/month</option>
+              </select>
+            </div>
           </div>
 
           <div class="input-row select-row row-transit">
-            <div class="row-control">
-              <select id="transitKmWeek">
-                <option value="0">None</option>
-                <option value="10">Low — &lt;20 km/week</option>
-                <option value="40" selected>Moderate — 20–60 km/week</option>
-                <option value="100">High — 60–150 km/week</option>
-                <option value="250">Very high — &gt;150 km/week</option>
-              </select>
-            </div>
             <div class="row-label">
               <div class="label-inner">
                 <span class="row-icon" aria-hidden="true">
@@ -181,9 +173,27 @@
               </div>
               <small id="transitHelp">Distance travelled per week on buses/trains (approx).</small>
             </div>
+            <div class="row-control">
+              <select id="transitKmWeek">
+                <option value="0">None</option>
+                <option value="10">Low — &lt;20 km/week</option>
+                <option value="40" selected>Moderate — 20–60 km/week</option>
+                <option value="100">High — 60–150 km/week</option>
+                <option value="250">Very high — &gt;150 km/week</option>
+              </select>
+            </div>
           </div>
 
           <div class="input-row select-row row-household">
+            <div class="row-label">
+              <div class="label-inner">
+                <span class="row-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l8 7h-3v8h-4v-5H11v5H7V10H4l8-7z"/></svg>
+                </span>
+                <label for="householdSize">Household size</label>
+              </div>
+              <small id="householdHelp">Number of people in your home.</small>
+            </div>
             <div class="row-control">
               <select id="householdSize">
                 <option value="1">1</option>

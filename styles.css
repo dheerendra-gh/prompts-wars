@@ -1,8 +1,8 @@
 :root {
     --bg: #eef6f0;
     /* page background: soft mint */
-    --card: #ffffff;
-    --panel: #e6fff0;
+    --card: rgba(255,255,255,0.68);
+    --panel: rgba(230,255,240,0.72);
     /* highlighted panel background */
     --accent: #2b8a3e;
     --accent-600: #1f6b2d;
@@ -12,7 +12,7 @@
 
 * {
     box-sizing: border-box;
-    font-family: Inter, Segoe UI, Roboto, Arial, sans-serif
+    font-family: Poppins, Inter, Segoe UI, Roboto, Arial, sans-serif;
 }
 
 body {
@@ -27,7 +27,7 @@ body::before {
     content: '';
     position: fixed;
     inset: 0;
-    background: linear-gradient(180deg, rgba(241, 253, 244, 0.88), rgba(223, 238, 228, 0.75));
+    background: linear-gradient(180deg, rgba(241, 253, 244, 0.92), rgba(223, 238, 228, 0.80));
     pointer-events: none;
     z-index: -1;
 }
@@ -61,12 +61,12 @@ h1 {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 24px;
-    padding: 32px;
+    padding: 28px;
     border-radius: 20px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(230, 255, 240, 0.8));
-    box-shadow: 0 16px 48px rgba(15, 23, 42, 0.08);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(230, 255, 240, 0.72));
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
     animation: slideInUp .8s ease-out;
-    border: 2px solid rgba(47, 123, 65, 0.12)
+    border: 1px solid rgba(47, 123, 65, 0.08);
 }
 
 @keyframes slideInUp {
@@ -142,16 +142,18 @@ h1 {
 
 .card {
     background: var(--card);
-    padding: 18px;
-    border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
-    margin-bottom: 16px
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 8px 28px rgba(15, 23, 42, 0.06);
+    margin-bottom: 18px;
+    border: 1px solid rgba(255,255,255,0.36);
+    backdrop-filter: blur(6px);
 }
 
 /* Highlighted calculator panel */
 .card-form {
     background: var(--panel);
-    border-left: 4px solid rgba(47, 107, 62, 0.12);
+    border-left: none;
     box-shadow: 0 8px 22px rgba(15, 23, 42, 0.04)
 }
 
@@ -196,7 +198,7 @@ h1 {
     display: grid;
     grid-template-columns: 220px 1fr;
     gap: 10px;
-    align-items: center
+    align-items: flex-start;
 }
 
 .select-row .row-label {
@@ -223,7 +225,7 @@ h1 {
     display: grid;
     grid-template-columns: 1fr 220px;
     gap: 10px;
-    align-items: center;
+    align-items: flex-start;
     padding: 10px;
     border-radius: 10px;
     border: 1px solid rgba(15, 23, 42, 0.05);
@@ -264,19 +266,13 @@ h1 {
 }
 
 .select-row .row-control {
-    justify-self: end
+    justify-self: end;
+    align-self: start;
 }
 
 /* Distinct left accent for each row */
 .select-row::before {
-    content: '';
-    width: 6px;
-    height: 40px;
-    border-radius: 6px;
-    background: linear-gradient(180deg, var(--accent), var(--accent-600));
-    display: inline-block;
-    margin-right: 10px;
-    vertical-align: middle
+    display: none;
 }
 
 @media(max-width:640px) {
@@ -290,7 +286,8 @@ h1 {
 }
 
 .select-row .row-control {
-    justify-self: end
+    justify-self: end;
+    align-self: start;
 }
 
 @media(max-width:640px) {
@@ -312,9 +309,10 @@ h1 {
 button {
     border: 0;
     padding: 10px 14px;
-    border-radius: 10px;
+    border-radius: 12px;
     cursor: pointer;
-    font-weight: 600
+    font-weight: 600;
+    transition: transform .12s ease, box-shadow .12s ease;
 }
 
 .primary {
@@ -329,8 +327,8 @@ button {
 
 /* Microinteractions and focus styles */
 button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08)
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
 }
 
 button:active {
@@ -411,13 +409,14 @@ select:focus {
 .card-results .result-item {
     display: flex;
     align-items: flex-start;
-    gap: 10px;
-    padding: 12px 14px;
+    gap: 12px;
+    padding: 14px 16px;
     border-radius: 14px;
-    background: rgba(255, 255, 255, 0.92);
-    border: 1px solid rgba(15, 23, 42, 0.08);
-    box-shadow: 0 6px 14px rgba(15, 23, 42, 0.035);
-    margin-bottom: 10px
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(15, 23, 42, 0.06);
+    box-shadow: 0 6px 12px rgba(15, 23, 42, 0.03);
+    margin-bottom: 12px;
+    transition: transform .18s ease, box-shadow .18s ease;
 }
 
 .card-results .result-item:last-child {
@@ -432,10 +431,14 @@ select:focus {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: rgba(15, 23, 42, 0.05);
+    background: rgba(15, 23, 42, 0.04);
     color: #0f172a;
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.45)
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.45);
+    transition: transform .18s ease, box-shadow .18s ease;
 }
+
+.card-results .result-item:hover{transform:translateY(-6px);box-shadow:0 18px 36px rgba(15,23,42,0.08)}
+.card-results .result-item:hover .result-icon{transform:scale(1.06);box-shadow:0 6px 18px rgba(0,0,0,0.06)}
 
 .card-results .result-text {
     display: grid;
@@ -687,9 +690,9 @@ select:focus {
 /* Override block: ensure select-row styles are consistent */
 .select-row {
     display: grid;
-    grid-template-columns: 220px 1fr;
+    grid-template-columns: 1fr 220px;
     gap: 14px;
-    align-items: center;
+    align-items: start;
     padding: 14px;
     border-radius: 14px;
     border: 1px solid rgba(15, 23, 42, 0.08);
@@ -697,6 +700,14 @@ select:focus {
     box-shadow: 0 6px 24px rgba(15, 23, 42, 0.08);
     margin-bottom: 14px;
     transition: transform .2s ease, box-shadow .2s ease
+}
+
+.select-row .row-label {
+    grid-column: 1;
+}
+
+.select-row .row-control {
+    grid-column: 2;
 }
 
 .select-row:hover {
