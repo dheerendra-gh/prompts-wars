@@ -48,10 +48,10 @@ function formatKgToTonnes(kg){
 }
 
 function calculate(){
-  const carKmWeek = Number(document.getElementById('carKmWeek').value) || 0;
-  const elecKwhMonth = Number(document.getElementById('elecKwhMonth').value) || 0;
-  const flightsPerYear = Number(document.getElementById('flightsPerYear').value) || 0;
-  const meatMealsWeek = Number(document.getElementById('meatMealsWeek').value) || 0;
+  const carKmWeek = Number(document.getElementById('carKmWeek')?.value) || 0;
+  const elecKwhMonth = Number(document.getElementById('elecKwhMonth')?.value) || 0;
+  const flightsPerYear = Number(document.getElementById('flightsPerYear')?.value) || 0;
+  const meatMealsWeek = Number(document.getElementById('meatMealsWeek')?.value) || 0;
 
   // Annualize inputs
   const carKmYear = carKmWeek * 52;
@@ -100,23 +100,25 @@ function calculate(){
       </li>`;
   }).join('');
 
-  resultsDiv.innerHTML = `
-    <div class="summary"><strong>Total estimate:</strong> ${formatKgToTonnes(totalKg)} — <small>~${formatKgToTonnes(perPersonKg)} per person</small></div>
-    <ul class="result-list">
-      ${resultItems}
-    </ul>
-  `;
+  if (resultsDiv) {
+    resultsDiv.innerHTML = `
+      <div class="summary"><strong>Total estimate:</strong> ${formatKgToTonnes(totalKg)} — <small>~${formatKgToTonnes(perPersonKg)} per person</small></div>
+      <ul class="result-list">
+        ${resultItems}
+      </ul>
+    `;
 
-  // Guidance message and badge
-  const tonnes = totalKg/1000;
-  let guidance = '';
-  let colorClass = '';
-  if (tonnes < 2) { guidance = 'Low — keep it up!'; colorClass = 'low'; }
-  else if (tonnes < 8) { guidance = 'Moderate — good opportunities to reduce.'; colorClass = 'moderate'; }
-  else { guidance = 'High — consider changes to travel, diet, and energy.'; colorClass = 'high'; }
-  resultsDiv.classList.remove('low','moderate','high');
-  resultsDiv.classList.add(colorClass);
-  resultsDiv.innerHTML += `<p class="guidance ${colorClass}"><em>${guidance}</em></p>`;
+    // Guidance message and badge
+    const tonnes = totalKg/1000;
+    let guidance = '';
+    let colorClass = '';
+    if (tonnes < 2) { guidance = 'Low — keep it up!'; colorClass = 'low'; }
+    else if (tonnes < 8) { guidance = 'Moderate — good opportunities to reduce.'; colorClass = 'moderate'; }
+    else { guidance = 'High — consider changes to travel, diet, and energy.'; colorClass = 'high'; }
+    resultsDiv.classList.remove('low','moderate','high');
+    resultsDiv.classList.add(colorClass);
+    resultsDiv.innerHTML += `<p class="guidance ${colorClass}"><em>${guidance}</em></p>`;
+  }
 
   // Update gauge: show percentage of a 10 t (10000 kg) baseline
   const gaugeFill = document.querySelector('.gauge-fill');
@@ -125,23 +127,55 @@ function calculate(){
 }
 
 function resetForm(){
-  document.getElementById('carKmWeek').value = 150;
-  document.getElementById('elecKwhMonth').value = 250;
-  document.getElementById('flightsPerYear').value = 1;
-  document.getElementById('meatMealsWeek').value = 7;
-  document.getElementById('results').innerHTML = '';
+  const car = document.getElementById('carKmWeek');
+  if (car) car.value = 150;
+  const elec = document.getElementById('elecKwhMonth');
+  if (elec) elec.value = 300;
+  const flights = document.getElementById('flightsPerYear');
+  if (flights) flights.value = 1;
+  const meat = document.getElementById('meatMealsWeek');
+  if (meat) meat.value = 8;
+  const heating = document.getElementById('heatingKwhMonth');
+  if (heating) heating.value = 220;
+  const transit = document.getElementById('transitKmWeek');
+  if (transit) transit.value = 40;
+  const household = document.getElementById('householdSize');
+  if (household) household.value = 2;
+  const results = document.getElementById('results');
+  if (results) results.innerHTML = '';
 }
 
-document.getElementById('calcBtn').addEventListener('click', calculate);
-document.getElementById('resetBtn').addEventListener('click', resetForm);
 
-// Run initial calculation to show defaults when DOM is ready
-document.addEventListener('DOMContentLoaded', function(){ calculate(); });
+function init() {
+  const calcBtn = document.getElementById('calcBtn');
+  if (calcBtn) calcBtn.addEventListener('click', calculate);
+  
+  const resetBtn = document.getElementById('resetBtn');
+  if (resetBtn) resetBtn.addEventListener('click', resetForm);
 
-// set footer year dynamically
-document.addEventListener('DOMContentLoaded', function(){
+  calculate();
+
   const y = new Date().getFullYear();
   const el = document.getElementById('year');
   if (el) el.textContent = y;
-});
+}
+
+if (typeof document !== 'undefined') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    FACTORS,
+    CATEGORY_UI,
+    formatKgToTonnes,
+    calculate,
+    resetForm,
+    init
+  };
+}
 

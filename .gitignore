@@ -4,3 +4,7 @@ joblogs.txt
 
 # Ignore local action logs extracted during debugging
 action_logs/
+
+# Dependencies and coverage
+node_modules/
+coverage/
